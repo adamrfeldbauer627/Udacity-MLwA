@@ -14,8 +14,44 @@ The best performing model was the voting ensemble.
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
-The Scikit-learn pipeline used logistic regression. The hyperparameters being used with this model were regularization strength and maximum iterations.
-The bank marketing data was used for this experiment as well as for the AutoML experiment.
+The Scikit-learn pipeline uses logistic regression. 
+
+The hyperparameters being used with this model were regularization strength and maximum iterations. Regularization changes the variance among the features. The regularization strength values chosen are discrete values from the following set - [0.001, 0.1, 1, 2, 3] where smaller values result in more regularization and the larger values result in less. The values span a wide range so we can test with varying degrees of regularization.  
+The maximum iterations parameter represents the maximum number of iterations for convergence. If the solver fails to converge before the maximum iteration, it aborts the run. The maximum iterations are randomly chosen from a discrete list of values as follows - [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]. The values in the maximum iteration list were chosen empirically after a few tests.
+
+The bank marketing data was used for this experiment as well as for the AutoML experiment. A record in the
+bank marketing data file represents a banking prospect or customer. Each column in the bank marketing represents
+a feature of the prospect or customer.  
+
+Features:  
+1 - age (numeric)  
+2 - job : type of job (categorical: 'admin.','blue-collar','entrepreneur','housemaid','management','retired','self-employed','services','student','technician','unemployed','unknown')  
+3 - marital : marital status (categorical: 'divorced','married','single','unknown'; note: 'divorced' means divorced or widowed)  
+4 - education (categorical: 'basic.4y','basic.6y','basic.9y','high.school','illiterate','professional.course','university.degree','unknown')  
+5 - default: has credit in default? (categorical: 'no','yes','unknown')  
+6 - housing: has housing loan? (categorical: 'no','yes','unknown')  
+7 - loan: has personal loan? (categorical: 'no','yes','unknown')  
+related with the last contact of the current campaign:  
+8 - contact: contact communication type (categorical: 'cellular','telephone')  
+9 - month: last contact month of year (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')  
+10 - day_of_week: last contact day of the week (categorical: 'mon','tue','wed','thu','fri')  
+11 - duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.  
+other attributes:  
+12 - campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)  
+13 - pdays: number of days that passed by after the client was last contacted from a previous campaign (numeric; 999 means client was not previously contacted)  
+14 - previous: number of contacts performed before this campaign and for this client (numeric)  
+15 - poutcome: outcome of the previous marketing campaign (categorical: 'failure','nonexistent','success')  
+social and economic context attributes  
+16 - emp.var.rate: employment variation rate - quarterly indicator (numeric)  
+17 - cons.price.idx: consumer price index - monthly indicator (numeric)  
+18 - cons.conf.idx: consumer confidence index - monthly indicator (numeric)  
+19 - euribor3m: euribor 3 month rate - daily indicator (numeric)  
+20 - nr.employed: number of employees - quarterly indicator (numeric)  
+  
+Output variable (desired target):  
+21 - y - has the client subscribed a term deposit? (binary: 'yes','no')  
+
+Feature descriptions were sourced from - https://archive.ics.uci.edu/ml/datasets/bank+marketing
 
 **What are the benefits of the parameter sampler you chose?**
 The random parameter sampler is a great sampling method because it is easy to use and accurately represents your sample.
